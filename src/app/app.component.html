@@ -1,0 +1,36 @@
+<div nz-row nzJustify="center">
+  <div nz-col nzLg="8" nzMd="12">
+    <nz-page-header class="site-page-header" nzTitle="TodoList">
+      <nz-page-header-extra>
+        <button nz-button nzType="primary" (click)="openCreateModal()">Nový úkol</button>
+      </nz-page-header-extra>
+    </nz-page-header>
+    <ul nz-list [nzDataSource]="noteList" nzBordered nzSize="large" [nzLoading]="listLoading">
+      <li nz-list-item *ngFor="let note of noteList" nzNoFlex>
+        <ul nz-list-item-actions>
+          <nz-list-item-action><i nz-icon nzType="edit" nzTheme="twotone" (click)="openEditModal(note)"></i>
+          </nz-list-item-action>
+          <nz-list-item-action><i
+            nz-icon
+            nzType="delete"
+            nzTwotoneColor="#eb2f96"
+            nzTheme="twotone"
+            nz-popconfirm
+            nzPopconfirmTitle="Opravdu si přejete odstranit poznámku?"
+            nzPopconfirmPlacement="top"
+            (nzOnConfirm)="removeNote(note._id)"
+          ></i>
+          </nz-list-item-action>
+        </ul>
+        <nz-space>
+          <nz-space-item>
+            <label (nzCheckedChange)="updateNote(note)" nz-checkbox [(ngModel)]="note.done"></label>
+          </nz-space-item>
+          <nz-space-item>
+            <span nz-col [class.strike]="note.done">{{note.content}}</span>
+          </nz-space-item>
+        </nz-space>
+      </li>
+    </ul>
+  </div>
+</div>
