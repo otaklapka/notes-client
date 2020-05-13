@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   serverUrl: '/api/v1',
   apiKey: 'bC&kb8*5hwShHNwy8Rm5dqRftFyY&hFC',
-  successCode: 10000,
-  errorCode: 10001
+  successCode: 200,
+  createdCode: 200,
 };
 
 /*

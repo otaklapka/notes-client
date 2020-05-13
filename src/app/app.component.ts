@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   updateNote(note: Note) {
     this.notes.update(note._id, note.content, note.done)
       .subscribe((res: ApiResponse) => {
-        if (+res.statusCode === environment.successCode) {
+        if (+res.status === environment.successCode) {
           this.message.success('Úkol byl upraven.');
         } else {
           this.message.error('Nepodařilo se updavit úkol.');
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   removeNote(id: string) {
     this.notes.remove(id)
       .subscribe((res: ApiResponse) => {
-      if (+res.statusCode === environment.successCode) {
+      if (+res.status === environment.successCode) {
         this.message.success('Úkol byl odstraněn.');
         this.loadNotes();
       } else {
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
               const content = instance.contentTextAreaElement.nativeElement.value;
               this.notes.update(note._id, content, note.done)
                 .subscribe((res: ApiResponse) => {
-                  if (+res.statusCode === environment.successCode) {
+                  if (+res.status === environment.successCode) {
                     this.message.success('Úkol byl upraven.');
                     this.notes.getAll().subscribe(next => {
                       this.noteList = next;
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit {
               const content = instance.contentTextAreaElement.nativeElement.value;
               this.notes.create(content)
                 .subscribe((res: ApiResponse) => {
-                  if (+res.statusCode === environment.successCode) {
+                  if (+res.status === environment.createdCode) {
                     this.message.success('Úkol byl vytvořen.');
                     this.notes.getAll().subscribe(next => {
                       this.noteList = next;
